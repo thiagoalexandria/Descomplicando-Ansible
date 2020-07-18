@@ -1,6 +1,5 @@
 [![PyPI version](https://img.shields.io/pypi/v/ansible.svg)](https://pypi.org/project/ansible)
 [![Code Of Conduct](https://img.shields.io/badge/code%20of%20conduct-Ansible-silver.svg)](https://docs.ansible.com/ansible/latest/community/code_of_conduct.html)
-![License](https://img.shields.io/badge/license-GPL%20v3.0-brightgreen.svg)
 
 # Sobre esse repositório
 
