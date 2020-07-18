@@ -1,0 +1,27 @@
+---
+- hosts: webservers
+  become: yes
+  remote_user: thiago
+  tasks:
+  - name: configure the nginx remote rpm repo
+    yum:
+      name: http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+      state: present
+      update_cache: yes
+  - name: install nginx
+    yum:
+      name: nginx
+      state: present
+      update_cache: yes
+  - name: initiate nginx service
+    service:
+      name: nginx
+      state: started
+  - name: enable service nginx
+    service:
+      name: nginx
+      enabled: yes
+  - name: configure index
+    template:
+      src: index.html.j2
+      dest: /usr/share/nginx/html/index.html

@@ -1,0 +1,5 @@
+[webservers]
+lab-primary
+
+[db]
+lab-worker
