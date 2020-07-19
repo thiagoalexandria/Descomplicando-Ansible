@@ -1,2 +1,10 @@
 ---
 # vars file for criacao-instancias
+
+instance_type: t2.micro
+sec_group_name: ansibe
+image: ami-0ac80df6eff0e70b5
+keypair: Thiago
+region: us-east-1
+count: 3
+profile: default
