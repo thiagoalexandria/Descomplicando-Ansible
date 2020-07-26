@@ -5,7 +5,7 @@
 
 - name: Inicializando o cluster k8s
   command:
-    kubeadm init
+    kubeadm init --ignore-preflight-errors=NumCPU
   register: kubeadm_init
 
 - name: Criando o diretório .kube
@@ -13,22 +13,22 @@
     path: ~/.kube
     state: directory
 
-- name: Adicionando arquivo de configuração
+- name: Linkando o arquivo admin.conf para o ~/.kube/config
   file:
     src: /etc/kubernetes/admin.conf
-    dst: ~/.kube/config
-  state: link
+    dest: ~/.kube/config
+    state: link
 
 - name: Configurando Weavenet
   shell: kubectl apply -f {{ default_weavenet_url }}
   register: weavenet_result
 
 - name: Armazenando Token
-  shell: kubeadm token list | cut -d ' ' -f1 | sed -n '2p'
+  shell: kubeadm token list | cut -d ' ' -f1  | sed -n '2p'
   register: k8s_token
 
 - name: CA Hash
-  shell: openssl x509 -pubkey -in /etc/kubernets/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
+  shell: openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //'
   register: k8s_master_ca_hash
 
 - name: "Adicionando token/hash dummy host"
