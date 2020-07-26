@@ -27,3 +27,9 @@
   user: ubuntu
   roles:
   - { role: install-helm, tags: ["install-helm_role"] }
+
+- hosts: k8s-master
+  become: yes
+  user: ubuntu
+  roles:
+  - { role: install-monit-tools, tags: ["install-monit-tools_role"] }
