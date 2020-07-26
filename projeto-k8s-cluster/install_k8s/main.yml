@@ -31,5 +31,5 @@
 - hosts: k8s-master
   become: yes
   user: ubuntu
-  roles:
-  - { role: install-monit-tools, tags: ["install-monit-tools_role"] }
+  roles: 
+  - { role: monit-tools, tags: ["monit_tools_role"] }
