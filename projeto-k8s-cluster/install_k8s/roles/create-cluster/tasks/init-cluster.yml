@@ -5,7 +5,7 @@
 
 - name: Inicializando o cluster k8s
   command:
-    kubeadm init --ignore-preflight-errors=NumCPU
+    kubeadm init
   register: kubeadm_init
 
 - name: Criando o diretório .kube
